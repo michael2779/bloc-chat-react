@@ -1,7 +1,32 @@
 .section_left {
   text-align: center;
-  float: left;
+  position: fixed;
   background-color: lightgrey;
+  top: 0;
+  bottom: 0;
   width: 30%;
-  font: blue;
 }
+
+.roomStyle {
+  padding: 10px;
+
+}
+
+.Modal {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  right: 200px;
+  bottom: 500px;
+  background-color: lightgray;
+  padding: 20px;
+}
+
+/* .Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: darkgray;
+} */
