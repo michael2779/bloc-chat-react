@@ -23,6 +23,7 @@ class App extends Component {
     return (
      <section >
        <RoomList firebase={firebase}/>
+       <MessageList firebase={firebase} />
      </section> 
     );
   }
