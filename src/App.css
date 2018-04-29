@@ -1,10 +1,17 @@
 .section_left {
+  float: left;
   text-align: center;
-  position: fixed;
-  background-color: lightgrey;
-  top: 0;
-  bottom: 0;
+  background-color: lightgray;
+  padding-top: 10px;
+  margin-bottom: -1px;
+  padding-bottom: 99999px;
   width: 30%;
+}
+
+.section_right {
+  float: left;
+  margin-bottom: -1px;
+  padding-bottom: 99999px;
 }
 
 .roomStyle {
@@ -17,16 +24,7 @@
   top: 100px;
   left: 200px;
   right: 200px;
-  bottom: 500px;
+  bottom: 600px;
   background-color: lightgray;
   padding: 20px;
 }
-
-/* .Overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: darkgray;
-} */

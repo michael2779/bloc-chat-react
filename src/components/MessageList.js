@@ -3,13 +3,17 @@ import '../App.css';
 
 
 
-class RoomList extends Component {
+class MessageList extends Component {
     constructor(props){
         super(props);
     }
 
     render (){
-        <h2>Room</h2>
-        
+        return (
+            <section className="section_right">
+                <h3>Room</h3>
+            </section>
+        );
     }
-export default RoomList;
+}
+export default MessageList;
