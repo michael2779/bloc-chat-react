@@ -25,7 +25,6 @@ class RoomList extends Component {
         this.roomsRef.on('child_added', snapshot => {
             const room = snapshot.val();
             room.key = snapshot.key;
-            console.log(room);
             this.setState({rooms: this.state.rooms.concat( room ) });
         });
     }
@@ -56,19 +55,24 @@ class RoomList extends Component {
         this.handleCloseModal();
     }
 
+    selectRoom(room) {
+        this.props.activeRoom(room);
+    }
+
     render(){
 
         return(
             <section className="section_left">
+                <h2>Bloc Chat</h2>
                 
+                <button className="button_New_Room" onClick={this.handleOpenModal}>Add New Room</button>
+            
                 {
                     this.state.rooms.map( ( room ) =>    
-                        <div className='roomStyle' key={room.key}>{room.name}</div>
+                        <div className='roomStyle' key={room.key} onClick={(e) => this.selectRoom(room, e)}>{room.name}</div>
                     )
                 }
                 
-                <button onClick={this.handleOpenModal}>add new</button>
-
                 <ReactModal 
                     isOpen={this.state.showModal}
                     onRequestClose={this.handleCloseModal}

@@ -18,13 +18,34 @@ firebase.initializeApp(config);
 
 
 class App extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {activeRoom: ""};
+    this.activeRoom = this.activeRoom.bind(this);
+  }
+
+activeRoom(room) {
+  this.setState({activeRoom: room})
+}
 
   render() {
+    const showMessages = this.state.activeRoom;
+
     return (
      <section >
-       <RoomList firebase={firebase}/>
-       <MessageList firebase={firebase}/>
+      <RoomList 
+        firebase={firebase}
+        activeRoom={this.activeRoom}
+      />
+      
+      { showMessages ?
+        <MessageList 
+          firebase={firebase}
+          activeRoom={this.state.activeRoom.key}
+        />
+      :null
+      }
+
      </section> 
     );
   }
