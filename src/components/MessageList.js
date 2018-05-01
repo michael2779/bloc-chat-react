@@ -8,10 +8,12 @@ class MessageList extends Component {
         super(props);
 
             this.state = {
-                messages: []
+                messages: [],
+                newContentInfo: ""
             };
 
             this.messagesRef = this.props.firebase.database().ref('messages');
+            
     }
 
     componentDidMount() {
@@ -19,17 +21,47 @@ class MessageList extends Component {
             const messagesA = snapshot.val();
             this.setState({messages: this.state.messages.concat(messagesA)})
         });
+
+        console.log(this.props.firebase.database.ServerValue.TIMESTAMP);
+    }
+
+    createMessageHandler(event) {
+        event.preventDefault();
+        
+        let newContentPush = this.state.newContentInfo;
+        
+        this.messagesRef.push({
+             content: newContentPush,
+             username: this.props.currentUser,
+             roomid: this.props.activeRoom,
+             sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
+        });
+        
+        this.setState({newRoomName:""});
+    }
+
+    handleChange(event) {
+        this.setState({newContentInfo: event.target.value});
     }
 
     render (){
 
         const activeRoom = this.props.activeRoom;
         
+
         const messageListing = (
             this.state.messages.map((theseMessages) => {
-               console.log(theseMessages.roomid, activeRoom);
+                let date = new Date(theseMessages.sentAt);
                 if (theseMessages.roomid === activeRoom) {
-                    return <div className="messageStyle" key={theseMessages.key}>{theseMessages.content}</div>
+                    return (
+                        <section className="messageStyle"> 
+                            <div className="user_Name_Style">{theseMessages.username}</div>
+                            <div className="sentAt_Style">{date.toLocaleString()}</div>
+                            <div className= "message_List_Style" key={theseMessages.key}>{theseMessages.content}</div>
+                            
+                        </section>
+                    )
+                    
                 }
                 return null;
             })
@@ -37,8 +69,10 @@ class MessageList extends Component {
 
         return (
             <section>                
-                <p>Room Message</p>
+                <h5>{this.props.activeRoom} Messages</h5>
                 {messageListing}
+                <input className="inputMessage" placeholder="Write your message here" value={ this.state.newContentInfo } onChange={ this.handleChange.bind(this) } />
+                <button className="button_New_Message"onClick={ this.createMessageHandler.bind(this) }>Submit</button>
             </section>
         );
     }

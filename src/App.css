@@ -48,3 +48,41 @@
   font-size: 18 px;
   border: 1px solid blue;
 }
+
+.inputMessage {
+  margin: 5px;
+  padding: 10px;
+  float: left;
+  width: 50%;
+  font-size: 10pt;
+}
+
+
+.button_New_Message {
+  float:right;
+  margin: 5px;
+  padding: 14px 30px;
+  font-size: 10px;
+  background-color: rgb(61, 194, 54);
+  color:whitesmoke;
+}
+
+.userStyle {
+  background-color: whitesmoke;
+}
+
+.user_Name_Style {
+  font-weight: bold;
+  padding: 4px 0px 10px 0px;
+}
+
+.message_List_Style {
+  
+}
+
+.sentAt_Style {
+  padding: 0px 10px 0px 0px;
+  float: right;
+  font-style: italic;
+  font-size: 90%;
+}
