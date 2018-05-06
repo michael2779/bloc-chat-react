@@ -47,6 +47,7 @@ class MessageList extends Component {
     render (){
 
         const activeRoom = this.props.activeRoom;
+        console.log(this.props);
         
 
         const messageListing = (
@@ -54,7 +55,7 @@ class MessageList extends Component {
                 let date = new Date(theseMessages.sentAt);
                 if (theseMessages.roomid === activeRoom) {
                     return (
-                        <section className="messageStyle"> 
+                        <section key={theseMessages.roomid} className="messageStyle"> 
                             <div className="user_Name_Style">{theseMessages.username}</div>
                             <div className="sentAt_Style">{date.toLocaleString()}</div>
                             <div className= "message_List_Style" key={theseMessages.key}>{theseMessages.content}</div>

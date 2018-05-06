@@ -60,7 +60,7 @@ setUser = (userName) => {
       { showMessages ?
         <MessageList 
           firebase={firebase}
-          activeRoom={this.state.activeRoom}
+          activeRoom={this.state.activeRoom.key}
           currentUser={currentUser}
         />
       :null
