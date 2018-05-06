@@ -69,7 +69,7 @@ class MessageList extends Component {
 
         return (
             <section>                
-                <h5>{this.props.activeRoom} Messages</h5>
+                <h5>{activeRoom.name} Messages</h5>
                 {messageListing}
                 <input className="inputMessage" placeholder="Write your message here" value={ this.state.newContentInfo } onChange={ this.handleChange.bind(this) } />
                 <button className="button_New_Message"onClick={ this.createMessageHandler.bind(this) }>Submit</button>
