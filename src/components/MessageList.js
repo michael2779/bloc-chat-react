@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
+//import { ChipDescriptionList } from './ChipDescriptionList';
+
 
 
 
@@ -19,10 +21,10 @@ class MessageList extends Component {
     componentDidMount() {
         this.messagesRef.on('child_added', snapshot => {
             const messagesA = snapshot.val();
+            messagesA.key = snapshot.key;
             this.setState({messages: this.state.messages.concat(messagesA)})
         });
 
-        console.log(this.props.firebase.database.ServerValue.TIMESTAMP);
     }
 
     createMessageHandler(event) {
@@ -47,19 +49,18 @@ class MessageList extends Component {
     render (){
 
         const activeRoom = this.props.activeRoom;
-        console.log(this.props);
         
 
         const messageListing = (
             this.state.messages.map((theseMessages) => {
+                
                 let date = new Date(theseMessages.sentAt);
                 if (theseMessages.roomid === activeRoom) {
                     return (
-                        <section key={theseMessages.roomid} className="messageStyle"> 
+                        <section key={theseMessages.key} className="messageStyle"> 
                             <div className="user_Name_Style">{theseMessages.username}</div>
                             <div className="sentAt_Style">{date.toLocaleString()}</div>
-                            <div className= "message_List_Style" key={theseMessages.key}>{theseMessages.content}</div>
-                            
+                            <div className= "message_List_Style">{theseMessages.content}</div>  
                         </section>
                     )
                     
